@@ -2,14 +2,13 @@ import argparse
 import csv
 
 # Global variables
+data_of_players = []
+whole_result = []
 added_data = []
 all_medals = []
-data_of_players = []
-count_medals = 0
-i = 0
-result_everything = None
 result = []
-whole_result = []
+count_medals = 0
+result_everything = None
 
 # Declaring arguments
 parser = argparse.ArgumentParser()
@@ -31,10 +30,7 @@ with open(path) as csvfile:
 del result[0]  # Deleting the first unessential row
 
 for row in result:
-    try:
-        year = int(row[9])  # Converting to int
-    except ValueError:
-        continue
+    year = int(row[9])  # Converting to int
     if args.total is not None:
         if int(args.total[0]) == year:
             data_of_players.append(row[6])
@@ -56,17 +52,14 @@ for row in result:
                         all_medals.append([str(year), row[-1], row[6]])
 
 if args.total is not None:
-    a = 0
-    b = 2
+    a, b = 0, 2
     while b < len(data_of_players):
         added_data.append(data_of_players[a:b])
         a += 2
         b += 2
 
-    for i in added_data:
-        if 'NA' in i[1]:
-            i.clear()
-    final_list = [x for x in added_data if x != []]
+    i = [i.clear() for i in added_data if 'NA' in i[1]]
+    final_list = [x for x in added_data if x != []]  # If there are any empties
     file = open(args.output_file, 'w')
     for i in range(0, len(final_list)):
         file = open(args.output_file, 'w')
@@ -85,8 +78,7 @@ if args.medals is not None:
             if 'NA' != all_medals[i]:  # Calculating if there is any medals except NA
                 count_medals += 1
 
-        a = 0
-        b = 3
+        a, b = 0, 3
         while True:
             added_data.append(data_of_players[a:b])  # Starting from the new line
             a += 3
@@ -105,6 +97,7 @@ if args.medals is not None:
             print(f'\nTotal number of medals: {count_medals}')
             file.write(f'\nTotal number of medals: {count_medals}')
         file.close()
+
 if args.overall is not None:
     for i in all_medals:
         if 'NA' in i[1]:
@@ -114,7 +107,6 @@ if args.overall is not None:
             data_of_players.append(i)
     for i in data_of_players:
         whole_result.append([data_of_players.count(i), i[-1], i[0]])  # Finding out how many occurrences there
-
     file = open(args.output_file, 'w')  # Creating a file, where output will be printed
 
     # The loop for printing the highest score
@@ -123,8 +115,6 @@ if args.overall is not None:
         print(f'MAX score of {max(whole_result)[1]} in {max(whole_result)[-1]}: {max(whole_result)[0]} medals')
         file.write(f'MAX score of {max(whole_result)[1]} in {max(whole_result)[-1]}: {max(whole_result)[0]} medals\n')
         inx = max(whole_result)[1]
-        for i in whole_result:
-            if inx in i:
-                i.clear()
+        i = [i.clear() for i in whole_result if inx in i]
         zx += 1
     file.close()
