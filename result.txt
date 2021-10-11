@@ -1,12 +1,12 @@
-Oleksandr Volodymyrovych Abramenko - Freestyle Skiing - NA
-Maryna Mykolavna Antsybor - Cross Country Skiing - NA
-Maryna Mykolavna Antsybor - Cross Country Skiing - NA
-Maryna Mykolavna Antsybor - Cross Country Skiing - NA
-Maryna Mykolavna Antsybor - Cross Country Skiing - NA
-Nataliya Leonidivna Burdyga - Biathlon - NA
-Annamari Mykhailivna Chundak - Snowboarding - NA
-Annamari Mykhailivna Chundak - Snowboarding - NA
-Andriy Vasylovych Deryzemlia - Biathlon - NA
-Andriy Vasylovych Deryzemlia - Biathlon - NA
+Svitlana Viktorivna Akhadova - Canoeing - NA
+Pavlo Serhiyovych Altukhov - Canoeing - NA
+Lolita Volodymyrivna Ananasova - Synchronized Swimming - NA
+Lolita Volodymyrivna Ananasova - Synchronized Swimming - NA
+Valeriy Oleksandrovych Andriitsev - Wrestling - NA
+Ivan Mykolaiyovych Banzeruk - Athletics - NA
+Maryna Oleksandrivna Bekh - Athletics - NA
+Zhan Vensanovych Beleniuk - Wrestling - Silver
+Yana Borysivna Belomoina - Cycling - NA
+Olha Anatolivna Bibik - Athletics - NA
 
-Country has less than 10 medals
+Total number of medals: 15
