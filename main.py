@@ -32,18 +32,16 @@ del result[0]  # Deleting the first unessential row
 
 for row in result:
     try:
-        year = int(row[9])  # converting str year to int
+        year = int(row[9])  # Converting to int
     except ValueError:
         continue
     if args.total is not None:
         if int(args.total[0]) == year:
-            all_medals.append(row[-1])
-
             data_of_players.append(row[6])
             data_of_players.append(row[-1])
     if args.medals is not None:
         if int(args.medals[1]) == year and args.medals[0] in row[6]:
-            all_medals.append(row[-1])
+            all_medals.append(row[-1])  # For further counting
 
             # Getting info from rows: name, activity type, medals
             data_of_players.append(row[1])
@@ -58,7 +56,6 @@ for row in result:
                         all_medals.append([str(year), row[-1], row[6]])
 
 if args.total is not None:
-    print(data_of_players)
     a = 0
     b = 2
     while b < len(data_of_players):
@@ -118,12 +115,16 @@ if args.overall is not None:
     for i in data_of_players:
         whole_result.append([data_of_players.count(i), i[-1], i[0]])  # Finding out how many occurrences there
 
+    file = open(args.output_file, 'w')  # Creating a file, where output will be printed
+
     # The loop for printing the highest score
     zx = 0
     while zx < len(''.join(args.overall).split(', ')):
-        print(max(whole_result))
+        print(f'MAX score of {max(whole_result)[1]} in {max(whole_result)[-1]}: {max(whole_result)[0]} medals')
+        file.write(f'MAX score of {max(whole_result)[1]} in {max(whole_result)[-1]}: {max(whole_result)[0]} medals\n')
         inx = max(whole_result)[1]
         for i in whole_result:
             if inx in i:
                 i.clear()
         zx += 1
+    file.close()

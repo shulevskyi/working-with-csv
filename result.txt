@@ -1,12 +1,3 @@
-Svitlana Viktorivna Akhadova - Canoeing - NA
-Pavlo Serhiyovych Altukhov - Canoeing - NA
-Lolita Volodymyrivna Ananasova - Synchronized Swimming - NA
-Lolita Volodymyrivna Ananasova - Synchronized Swimming - NA
-Valeriy Oleksandrovych Andriitsev - Wrestling - NA
-Ivan Mykolaiyovych Banzeruk - Athletics - NA
-Maryna Oleksandrivna Bekh - Athletics - NA
-Zhan Vensanovych Beleniuk - Wrestling - Silver
-Yana Borysivna Belomoina - Cycling - NA
-Olha Anatolivna Bibik - Athletics - NA
-
-Total number of medals: 15
+MAX score of United States in 1984: 359 medals
+MAX score of Finland in 1924: 67 medals
+MAX score of Ukraine in 2004: 47 medals
