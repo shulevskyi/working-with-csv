@@ -13,15 +13,10 @@ result_everything = None
 parser = argparse.ArgumentParser()
 parser.add_argument('file', type=str)
 group = parser.add_mutually_exclusive_group()  # There is a group thanks to user has 2 different option to choose
-group.add_argument('--total', action='store_true')
-group.add_argument('--medals', action='store_true')
-parser.add_argument('country', type=str)
-parser.add_argument('year', type=int)
+group.add_argument('--total', nargs=1)
+group.add_argument('--medals', nargs=2)
 parser.add_argument('output_file', type=str)
 args = parser.parse_args()
-
-if args.total:
-    parser.add_argument('country', help=argparse.SUPPRESS)
 
 
 with open('data.csv') as csvfile:
@@ -32,14 +27,14 @@ with open('data.csv') as csvfile:
             year = int(row[9])  # converting str year to int
         except ValueError:
             continue
-        if args.total:
-            if args.year == year:
+        if args.total is not None:
+            if int(args.total[0]) == year:
                 all_medals.append(row[-1])
 
                 data_of_players.append(row[6])
                 data_of_players.append(row[-1])
-        if args.medals:
-            if args.year == year and args.country in row[6]:
+        if args.medals is not None:
+            if int(args.medals[1]) == year and args.medals[0] in row[6]:
                 all_medals.append(row[-1])
 
                 # Getting info from rows: name, activity type, medals
@@ -48,7 +43,7 @@ with open('data.csv') as csvfile:
                 data_of_players.append(row[-1])
                 result_everything = True
 
-    if args.total:
+    if args.total is not None:
         a = 0
         b = 2
         while b < len(data_of_players):
@@ -66,7 +61,7 @@ with open('data.csv') as csvfile:
             file.write(' - '.join(final_list[i]))
             print(' - '.join(final_list[i]))
 
-    if args.medals:
+    if args.medals is not None:
         file = open(args.output_file, 'w')  # Creating a file, where output will be printed
         if not result_everything:
             print('There is wrong year or name of country')
