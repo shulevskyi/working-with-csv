@@ -25,24 +25,22 @@ path = str(args.file)
 with open(path) as csvfile:
     reader = csv.reader(csvfile)
     for rows in reader:
-        result.append(rows)
+        result.append(rows)  # Appending data from csv to list
 
 del result[0]  # Deleting the first unessential row
+file = open(args.output_file, 'w')
 
 for row in result:
     year = int(row[9])  # Converting to int
     if args.total is not None:
         if int(args.total[0]) == year:
-            data_of_players.append(row[6])
-            data_of_players.append(row[-1])
+            data_of_players.append(row[6]), data_of_players.append(row[-1])
     if args.medals is not None:
         if int(args.medals[1]) == year and args.medals[0] in row[6]:
             all_medals.append(row[-1])  # For further counting
 
             # Getting info from rows: name, activity type, medals
-            data_of_players.append(row[1])
-            data_of_players.append(row[12])
-            data_of_players.append(row[-1])
+            data_of_players.append(row[1]), data_of_players.append(row[12]), data_of_players.append(row[-1])
             result_everything = True
     if args.overall is not None:
         for i in range(0, len(''.join(args.overall).split(', '))):
@@ -55,23 +53,18 @@ if args.total is not None:
     a, b = 0, 2
     while b < len(data_of_players):
         added_data.append(data_of_players[a:b])
-        a += 2
-        b += 2
+        a += 2; b += 2
 
     i = [i.clear() for i in added_data if 'NA' in i[1]]
     final_list = [x for x in added_data if x != []]  # If there are any empties
-    file = open(args.output_file, 'w')
     for i in range(0, len(final_list)):
-        file = open(args.output_file, 'w')
-        file.write(' - '.join(final_list[i]))
-        print(' - '.join(final_list[i]))
+        str_final = ' - '.join(final_list[i])
+        file.write(f'{str_final}\n')
+        print(str_final)
 
 if args.medals is not None:
-    file = open(args.output_file, 'w')  # Creating a file, where output will be printed
     if not result_everything:
-        print('There is wrong year or name of country')
-        file.write('There is wrong year or name of country')
-        exit()
+        print('There is wrong year or name of country'), file.write('There is wrong year or name of country'), exit()
 
     else:
         for i in range(0, len(all_medals)):
@@ -81,22 +74,16 @@ if args.medals is not None:
         a, b = 0, 3
         while True:
             added_data.append(data_of_players[a:b])  # Starting from the new line
-            a += 3
-            b += 3
+            a += 3; b += 3
             if len(added_data) == 10:
                 break
         final_list = [x for x in added_data if x != []]  # Deleting empty lists if this is necessary
         for i in range(0, len(final_list)):
-            print(' - '.join(final_list[i]))
-            file.write(' - '.join(final_list[i]) + "\n")
-
+            print(' - '.join(final_list[i])), file.write(' - '.join(final_list[i]) + "\n")
         if count_medals < 10:
-            print('\nCountry has less than 10 medals')
-            file.write('\nCountry has less than 10 medals')
+            print('\nCountry has less than 10 medals'), file.write('\nCountry has less than 10 medals')
         if count_medals >= 10:
-            print(f'\nTotal number of medals: {count_medals}')
-            file.write(f'\nTotal number of medals: {count_medals}')
-        file.close()
+            print(f'\nTotal number of medals: {count_medals}'), file.write(f'\nTotal number of medals: {count_medals}')
 
 if args.overall is not None:
     for i in all_medals:
@@ -105,9 +92,7 @@ if args.overall is not None:
         else:
             del i[1]  # Delete the medals themselves
             data_of_players.append(i)
-    for i in data_of_players:
-        whole_result.append([data_of_players.count(i), i[-1], i[0]])  # Finding out how many occurrences there
-    file = open(args.output_file, 'w')  # Creating a file, where output will be printed
+    whole_result = [[data_of_players.count(i), i[-1], i[0]] for i in data_of_players]  # Finding out how many occurrences there
 
     # The loop for printing the highest score
     zx = 0
